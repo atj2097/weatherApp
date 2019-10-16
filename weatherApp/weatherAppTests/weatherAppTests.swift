@@ -20,8 +20,17 @@ class weatherAppTests: XCTestCase {
     }
 
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+//       let zipCode = "30331"
+//        var latAndLong2 = (lat: Double, long: Double, name: String)
+//        ZipCodeHelper.getLatLong(fromZipCode: zipCode, completionHandler: {(result) in
+//            switch result {
+//            case .success(let latAndLong):
+//                latAndLong2 = latAndLong
+//            case .failure(let error):
+//                print(error)
+//            }
+//
+//        })
     }
 
     func testPerformanceExample() {

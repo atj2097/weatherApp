@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let weatherVC  = WeatherViewController()
         let favVC = FavoritesViewController()
-
         weatherVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         favVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         let navController = UINavigationController(rootViewController: weatherVC)

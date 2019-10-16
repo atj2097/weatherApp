@@ -17,8 +17,8 @@ class WeatherView: UIView {
         return weatherCityLabel
     }()
     
-    let weatherView: UICollectionView = {
-        let weatherView = UICollectionView(frame: CGRect(x: 200, y: 200, width: 300, height: 400), collectionViewLayout: UICollectionViewLayout.init())
+    let weatherCollectionView: UICollectionView = {
+        let weatherView = UICollectionView(frame:CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewLayout.init())
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         weatherView.setCollectionViewLayout(layout, animated: true)
@@ -51,7 +51,7 @@ class WeatherView: UIView {
     
     private func commonInit() {
         addSubview(weatherCityLabel)
-        addSubview(weatherView)
+        addSubview(weatherCollectionView)
         addSubview(enterZipCode)
         addSubview(zipCodeText)
         setConstraints()
@@ -62,12 +62,13 @@ class WeatherView: UIView {
         //Weather Label
         weatherCityLabel.translatesAutoresizingMaskIntoConstraints = false
         [weatherCityLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 100), weatherCityLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 250)].forEach({$0.isActive = true })
+        
         //Collection View
-        weatherView.translatesAutoresizingMaskIntoConstraints = false
-        [weatherView.topAnchor.constraint(equalTo: weatherCityLabel.bottomAnchor, constant: 50), weatherView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 250), weatherView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 250), weatherView.bottomAnchor.constraint(equalTo: enterZipCode.topAnchor, constant: 20)].forEach({$0.isActive = true})
+        weatherCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        [weatherCollectionView.topAnchor.constraint(equalTo: weatherCityLabel.bottomAnchor, constant: 50), weatherCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0), weatherCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 250), weatherCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 500)].forEach({$0.isActive = true})
         //Input Zip Code
         enterZipCode.translatesAutoresizingMaskIntoConstraints = false
-        [enterZipCode.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 0), enterZipCode.bottomAnchor.constraint(equalTo: zipCodeText.topAnchor, constant: 10), enterZipCode.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 200)].forEach({$0.isActive = true})
+        [enterZipCode.topAnchor.constraint(equalTo: weatherCollectionView.bottomAnchor, constant: 0), enterZipCode.bottomAnchor.constraint(equalTo: zipCodeText.topAnchor, constant: 10), enterZipCode.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 200)].forEach({$0.isActive = true})
         //ZipLabel
         zipCodeText.translatesAutoresizingMaskIntoConstraints = false
         [zipCodeText.topAnchor.constraint(equalTo: enterZipCode.bottomAnchor), enterZipCode.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 250)].forEach({$0.isActive = true})
