@@ -12,6 +12,8 @@ import UIKit
 
 class WeatherViewController: UIViewController {
     var weatherView = WeatherView()
+    var cityImage = UIImage()
+    var cityName = String()
     var weatherArray = [DailyDatum]() {
         didSet {
             weatherView.weatherCollectionView.reloadData()
@@ -22,7 +24,7 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         weatherView.backgroundColor = .clear
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "27-Clouds-iPhone-Wallpapers-by-Preppy-Wallpapers"))
-
+        
         addViews()
         //Setting Up Collection View
         weatherView.weatherCollectionView.dataSource = self
@@ -37,19 +39,7 @@ class WeatherViewController: UIViewController {
         self.view.addSubview(weatherView)
     }
     
-//    func loadData() {
-//        WeatherAPIManager.shared.getWeather(long: <#Double#>, lat: <#Double#>, completionHandler: {(result) in
-//            DispatchQueue.main.async {
-//                switch result{
-//                case .success(let weather):
-//                    self.weatherArray = weather
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//        })
-//    }
-//}
+    
 }
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -88,13 +78,15 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         let weatherForecast = weatherArray[indexPath.row]
         let nextViewController = DetailViewController()
         nextViewController.weather = weatherForecast
-       self.present(nextViewController, animated: true, completion: nil)
+        nextViewController.cityImage = cityImage
+        nextViewController.cityName = cityName
+        self.present(nextViewController, animated: true, completion: nil)
     }
     
     
 }
 extension WeatherViewController:UITextFieldDelegate {
-   
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         ZipCodeHelper.getLatLong(fromZipCode: textField.text!, completionHandler: {(result) in
             DispatchQueue.main.async {
@@ -102,6 +94,7 @@ extension WeatherViewController:UITextFieldDelegate {
                 case .success(let success):
                     print(success)
                     self.weatherView.weatherCityLabel.text = "Weather For \(success.2)"
+                    self.cityName = success.2
                     WeatherAPIManager.shared.getWeather(long: success.long, lat: success.lat, completionHandler: {(result) in
                         DispatchQueue.main.async {
                             switch result{
@@ -115,19 +108,25 @@ extension WeatherViewController:UITextFieldDelegate {
                     self.weatherView.weatherCollectionView.reloadData()
                     ImageAPIManager.getImages(city: success.name.lowercased(), completionHandler: {(result) in
                         switch result{
-                        case .success(let success2):
-                            let url = URL(string: success2[0].largeImageURL)
+                        case .success(let success):
+                            let url = URL(string:success[0].largeImageURL)
                             dump(url)
                             if url != nil {
-                            if let data = try? Data(contentsOf: url!)
-                            {
-                                self.view.backgroundColor = UIColor(patternImage: UIImage(data: data)!)
-                            }
+                                if let data = try? Data(contentsOf: url!)
+                                {
+                                UIGraphicsBeginImageContext(self.view.frame.size)
+                                    UIImage(data: data)?.draw(in: self.view.bounds)
+                                    let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+                                    UIGraphicsEndImageContext()
+                                    self.view.backgroundColor = UIColor(patternImage: image)
+                                    self.cityImage = image
+                                    
+                                }
                             } else {
                                 self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "27-Clouds-iPhone-Wallpapers-by-Preppy-Wallpapers"))
                             }
-                          
                         
+                            
                         case.failure(let error):
                             print(error)
                         }
@@ -140,9 +139,9 @@ extension WeatherViewController:UITextFieldDelegate {
         })
         return true
     }
-
-
+    
+    
 }
-    
-    
+
+
 

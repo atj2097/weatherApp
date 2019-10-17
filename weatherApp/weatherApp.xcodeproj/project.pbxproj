@@ -27,8 +27,6 @@
 		CB1A0607235776EA00108BC9 /* Persistence Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A0606235776EA00108BC9 /* Persistence Manager.swift */; };
 		CB1A06092357774E00108BC9 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A06082357774E00108BC9 /* ImageHelper.swift */; };
 		CB7CFAB52357B68E001244FC /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7CFAB32357B68E001244FC /* detailViewController.swift */; };
-		CB7CFAB62357B68E001244FC /* detailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB7CFAB42357B68E001244FC /* detailViewController.xib */; };
-		CB7CFAB82357BE80001244FC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7CFAB72357BE80001244FC /* DetailView.swift */; };
 		CBA91005235652300048CAA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA91004235652300048CAA7 /* AppDelegate.swift */; };
 		CBA9100C235652310048CAA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBA9100B235652310048CAA7 /* Assets.xcassets */; };
 		CBA9100F235652310048CAA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBA9100D235652310048CAA7 /* LaunchScreen.storyboard */; };
@@ -74,8 +72,6 @@
 		CB1A0606235776EA00108BC9 /* Persistence Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistence Manager.swift"; sourceTree = "<group>"; };
 		CB1A06082357774E00108BC9 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		CB7CFAB32357B68E001244FC /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
-		CB7CFAB42357B68E001244FC /* detailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = detailViewController.xib; sourceTree = "<group>"; };
-		CB7CFAB72357BE80001244FC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		CBA91001235652300048CAA7 /* weatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBA91004235652300048CAA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBA9100B235652310048CAA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,8 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				CB7CFAB32357B68E001244FC /* detailViewController.swift */,
-				CB7CFAB42357B68E001244FC /* detailViewController.xib */,
-				CB7CFAB72357BE80001244FC /* DetailView.swift */,
 			);
 			path = DVCs;
 			sourceTree = "<group>";
@@ -345,7 +339,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB7CFAB62357B68E001244FC /* detailViewController.xib in Resources */,
 				CBA9100F235652310048CAA7 /* LaunchScreen.storyboard in Resources */,
 				CB1A05F12356609400108BC9 /* FavCell.xib in Resources */,
 				CBA9100C235652310048CAA7 /* Assets.xcassets in Resources */,
@@ -387,7 +380,6 @@
 				CB1A06012356727900108BC9 /* WeatherFetchingServiced.swift in Sources */,
 				CB1A05F323566D4900108BC9 /* UserDefaults.swift in Sources */,
 				CB1A06092357774E00108BC9 /* ImageHelper.swift in Sources */,
-				CB7CFAB82357BE80001244FC /* DetailView.swift in Sources */,
 				CB1A06032356748C00108BC9 /* ZipCodeHelper.swift in Sources */,
 				CB1A05E32356555900108BC9 /* WeatherViewController.swift in Sources */,
 				CB1A05F02356609400108BC9 /* FavCell.swift in Sources */,
