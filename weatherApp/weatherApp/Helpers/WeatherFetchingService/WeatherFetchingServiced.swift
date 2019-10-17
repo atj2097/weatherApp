@@ -12,9 +12,10 @@ class WeatherAPIManager {
     private init() {}
 
     static let shared = WeatherAPIManager()
-    static let longLatitude = ""
-    func getWeather( completionHandler: @escaping (Result<[DailyDatum], AppError>) -> Void) {
-        let urlStr = "https://api.darksky.net/forecast/2978fe7f2c818ac20f5f87f0591a3d3d/37.8267,-122.4233"
+    static let longitude = ""
+    static let latitude = ""
+    func getWeather(long: Double, lat: Double, completionHandler: @escaping (Result<[DailyDatum], AppError>) -> Void) {
+        let urlStr = "https://api.darksky.net/forecast/2978fe7f2c818ac20f5f87f0591a3d3d/\(long),\(lat)"
         guard let url = URL(string: urlStr) else {
             completionHandler(.failure(.badURL))
             return

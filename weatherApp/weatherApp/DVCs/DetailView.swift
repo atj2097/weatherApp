@@ -18,6 +18,7 @@ class DetailView: UIView {
     @IBOutlet weak var humidity: UILabel!
     @IBOutlet weak var weatherDescription: UITextView!
     @IBAction func saveCity(_ sender: UIButton) {
+
     }
     /*
     // Only override draw() if you perform custom drawing.
@@ -26,5 +27,18 @@ class DetailView: UIView {
         // Drawing code
     }
     */
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+  
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+        
+    }
+    
+    
+    //Constraints
+
 
 }

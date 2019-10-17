@@ -10,22 +10,24 @@ import UIKit
 
 class DetailViewController: UIViewController {
     let detailView = DetailView()
-    let weather = DailyDatum?.self
-    
-    
-    
-    
-    
+    var weather: DailyDatum!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = .white
+        setUpView()
+        addSubViews()
+        
         // Do any additional setup after loading the view.
     }
     private func addSubViews() {
         self.view.addSubview(detailView)
     }
 
+    
+    private func setUpView() {
+        detailView.cityName.text = "\(weather.time)"
+    }
     /*
     // MARK: - Navigation
 

@@ -5,7 +5,8 @@
 //  Created by God on 10/15/19.
 //  Copyright © 2019 God. All rights reserved.
 //
-//TO DO: Fully Set Up All Functionalities of View Controller
+//TO DO: See why app is crashing when assigning labels
+//TO DO: Add text input delegates
 
 import UIKit
 
@@ -19,12 +20,14 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        weatherView.backgroundColor = .white
-        loadData()
+        weatherView.backgroundColor = .clear
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "27-Clouds-iPhone-Wallpapers-by-Preppy-Wallpapers"))
+
         addViews()
         //Setting Up Collection View
         weatherView.weatherCollectionView.dataSource = self
         weatherView.weatherCollectionView.delegate = self
+        weatherView.enterZipCode.delegate = self
         let nib = UINib(nibName: "WeatherCell", bundle: nil)
         weatherView.weatherCollectionView.register(nib, forCellWithReuseIdentifier: "weatherCell")
         dump(weatherArray)
@@ -34,20 +37,20 @@ class WeatherViewController: UIViewController {
         self.view.addSubview(weatherView)
     }
     
-    func loadData() {
-        WeatherAPIManager.shared.getWeather(completionHandler: {(result) in
-            DispatchQueue.main.async {
-                switch result{
-                case .success(let weather):
-                    self.weatherArray = weather
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        })
-    }
+//    func loadData() {
+//        WeatherAPIManager.shared.getWeather(long: <#Double#>, lat: <#Double#>, completionHandler: {(result) in
+//            DispatchQueue.main.async {
+//                switch result{
+//                case .success(let weather):
+//                    self.weatherArray = weather
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//        })
+//    }
+//}
 }
-
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,8 +59,9 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = weatherView.weatherCollectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as! WeatherCell
+        cell.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         let currentWeather = weatherArray[indexPath.row]
-        let date = NSDate(timeIntervalSince1970: TimeInterval(currentWeather.time))
+        let date = NSDate(timeIntervalSince1970: TimeInterval(currentWeather.time!))
         let formatter = DateFormatter()
         // initially set the format based on your datepicker date / server String
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -69,7 +73,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         formatter.dateFormat = "dd-MMM-yyyy"
         // again convert your date to string
         let myStringafd = formatter.string(from: yourDate!)
-
+        
         cell.dateOfTheWeek.text = myStringafd
         cell.weatherImage.image = UIImage(named: "\(currentWeather.icon)")
         cell.highTemp.text = "\(currentWeather.temperatureHigh)"
@@ -81,12 +85,64 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         return CGSize(width: 300, height: 300)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-           let weatherForecast = weatherArray[indexPath.row]
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherView") as! DetailViewController
-            nextViewController.weather = weatherForecast
-            self.present(nextViewController, animated:true, completion:nil)
+        let weatherForecast = weatherArray[indexPath.row]
+        let nextViewController = DetailViewController()
+        nextViewController.weather = weatherForecast
+       self.present(nextViewController, animated: true, completion: nil)
     }
     
     
 }
+extension WeatherViewController:UITextFieldDelegate {
+   
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        ZipCodeHelper.getLatLong(fromZipCode: textField.text!, completionHandler: {(result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let success):
+                    print(success)
+                    self.weatherView.weatherCityLabel.text = "Weather For \(success.2)"
+                    WeatherAPIManager.shared.getWeather(long: success.long, lat: success.lat, completionHandler: {(result) in
+                        DispatchQueue.main.async {
+                            switch result{
+                            case .success(let weather):
+                                self.weatherArray = weather
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
+                    })
+                    self.weatherView.weatherCollectionView.reloadData()
+                    ImageAPIManager.getImages(city: success.name.lowercased(), completionHandler: {(result) in
+                        switch result{
+                        case .success(let success2):
+                            let url = URL(string: success2[0].largeImageURL)
+                            dump(url)
+                            if url != nil {
+                            if let data = try? Data(contentsOf: url!)
+                            {
+                                self.view.backgroundColor = UIColor(patternImage: UIImage(data: data)!)
+                            }
+                            } else {
+                                self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "27-Clouds-iPhone-Wallpapers-by-Preppy-Wallpapers"))
+                            }
+                          
+                        
+                        case.failure(let error):
+                            print(error)
+                        }
+                        
+                    })
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        })
+        return true
+    }
+
+
+}
+    
+    
+

@@ -28,12 +28,12 @@ struct Daily: Codable {
 // MARK: - DailyDatum
 struct DailyDatum: Codable {
     let icon: String
-    let temperatureHigh: Double
-    let temperatureLow: Double
-    let windSpeed: Double
-    let precipIntensityMax: Double
-    let time: Int
-    let sunriseTime: Int
-    let sunsetTime: Int
+    let temperatureHigh: Double?
+    let temperatureLow: Double?
+    let windSpeed: Double?
+    let precipIntensityMax: Double?
+    let time: Int?
+    let sunriseTime: Int?
+    let sunsetTime: Int?
 }
 
