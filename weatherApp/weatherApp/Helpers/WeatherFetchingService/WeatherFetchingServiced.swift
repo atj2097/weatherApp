@@ -15,7 +15,7 @@ class WeatherAPIManager {
     static let longitude = ""
     static let latitude = ""
     func getWeather(long: Double, lat: Double, completionHandler: @escaping (Result<[DailyDatum], AppError>) -> Void) {
-        let urlStr = "https://api.darksky.net/forecast/2978fe7f2c818ac20f5f87f0591a3d3d/\(long),\(lat)"
+        let urlStr = "https://api.darksky.net/forecast/2978fe7f2c818ac20f5f87f0591a3d3d/\(lat),\(long)"
         guard let url = URL(string: urlStr) else {
             completionHandler(.failure(.badURL))
             return

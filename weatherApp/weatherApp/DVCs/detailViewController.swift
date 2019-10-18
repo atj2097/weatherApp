@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
     lazy var tempHigh: UILabel = {
         let tempHigh = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         tempHigh.textColor = .black
+        tempHigh.font = UIFont(name: "Arial-BoldItalicMT", size: 30)
         tempHigh.textAlignment = .center
         return tempHigh
     }()
@@ -33,8 +34,23 @@ class DetailViewController: UIViewController {
     lazy var tempLow: UILabel = {
         let tempLow = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         tempLow.textColor = .black
+        tempLow.font = UIFont(name: "Arial-BoldItalicMT", size: 30)
         tempLow.textAlignment = .center
         return tempLow
+    }()
+    
+    lazy var sunriseTime: UILabel = {
+        let surnrise = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        surnrise.textColor = .black
+        surnrise.textAlignment = .center
+        return surnrise
+    }()
+    
+    lazy var sunsetTime: UILabel = {
+        let sunset = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        sunset.textColor = .black
+        sunset.textAlignment = .center
+        return sunset
     }()
     
     lazy var imageForecast: UIImageView = {
@@ -53,13 +69,14 @@ class DetailViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "12-Clouds-iPhone-Wallpapers-by-Preppy-Wallpapers"))
         self.view.addSubview(cityLabel)
         self.view.addSubview(imageView)
         self.view.addSubview(tempHigh)
         self.view.addSubview(tempLow)
         self.view.addSubview(imageForecast)
+        self.view.addSubview(sunsetTime)
+        self.view.addSubview(sunriseTime)
         cityLabel.text = cityName
         imageView.image = cityImage
         imageForecast.image = UIImage(named: weather.icon)
@@ -68,6 +85,7 @@ class DetailViewController: UIViewController {
         }
         tempHigh.text = "High Temp: \(weather.temperatureHigh?.description ?? "")"
         tempLow.text = "Low Temp: \(weather.temperatureLow?.description ?? "")"
+        
         setUpConstraints()
         // Do any additional setup after loading the view.
     }
@@ -87,5 +105,10 @@ class DetailViewController: UIViewController {
         tempLow.translatesAutoresizingMaskIntoConstraints = false
         [tempLow.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),tempLow.topAnchor.constraint(equalTo: tempHigh.bottomAnchor, constant: 20)].forEach({$0.isActive = true})
         
+        sunriseTime.translatesAutoresizingMaskIntoConstraints = false
+        [sunriseTime.topAnchor.constraint(equalTo: tempLow.bottomAnchor, constant: 10), sunriseTime.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)].forEach({$0.isActive = true})
+        
+        sunsetTime.translatesAutoresizingMaskIntoConstraints = false
+        [sunsetTime.topAnchor.constraint(equalTo: sunriseTime.bottomAnchor, constant: 10),sunsetTime.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)].forEach({$0.isActive = true})
     }
 }

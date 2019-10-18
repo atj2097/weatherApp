@@ -66,8 +66,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         cell.dateOfTheWeek.text = myStringafd
         cell.weatherImage.image = UIImage(named: "\(currentWeather.icon)")
-        cell.highTemp.text = "\(currentWeather.temperatureHigh)"
-        cell.lowTemp.text = "\(currentWeather.temperatureLow)"
+        cell.highTemp.text = "\(currentWeather.temperatureHigh!)"
+        cell.lowTemp.text = currentWeather.temperatureLow?.description
         //get date from time NSDATE
         return cell
     }
@@ -82,10 +82,8 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         nextViewController.cityName = cityName
         self.present(nextViewController, animated: true, completion: nil)
     }
-    
-    
 }
-extension WeatherViewController:UITextFieldDelegate {
+extension WeatherViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         ZipCodeHelper.getLatLong(fromZipCode: textField.text!, completionHandler: {(result) in
@@ -95,6 +93,8 @@ extension WeatherViewController:UITextFieldDelegate {
                     print(success)
                     self.weatherView.weatherCityLabel.text = "Weather For \(success.2)"
                     self.cityName = success.2
+                    DispatchQueue.global().async {
+                    
                     WeatherAPIManager.shared.getWeather(long: success.long, lat: success.lat, completionHandler: {(result) in
                         DispatchQueue.main.async {
                             switch result{
@@ -105,11 +105,12 @@ extension WeatherViewController:UITextFieldDelegate {
                             }
                         }
                     })
+                    }
                     self.weatherView.weatherCollectionView.reloadData()
-                    ImageAPIManager.getImages(city: success.name.lowercased(), completionHandler: {(result) in
+                    ImageAPIManager.getImages(city: success.name.lowercased().replacingOccurrences(of: " ", with: "+"), completionHandler: {(result) in
                         switch result{
                         case .success(let success):
-                            let url = URL(string:success[0].largeImageURL)
+                            let url = URL(string:success.randomElement()?.largeImageURL ?? "")
                             dump(url)
                             if url != nil {
                                 if let data = try? Data(contentsOf: url!)
