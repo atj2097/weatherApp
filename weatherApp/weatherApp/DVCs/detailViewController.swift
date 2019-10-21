@@ -58,6 +58,12 @@ class DetailViewController: UIViewController {
         return forecastImage
     }()
     
+    lazy var saveButton: UIButton = {
+        var saveButton = UIButton(frame: .zero)
+        saveButton.imageView?.image = #imageLiteral(resourceName: "icons8-save-64")
+        return saveButton
+    }()
+    
     
     var weather: DailyDatum!
         
@@ -110,5 +116,8 @@ class DetailViewController: UIViewController {
         
         sunsetTime.translatesAutoresizingMaskIntoConstraints = false
         [sunsetTime.topAnchor.constraint(equalTo: sunriseTime.bottomAnchor, constant: 10),sunsetTime.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)].forEach({$0.isActive = true})
+        
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        [saveButton.topAnchor.constraint(equalTo: self.view.topAnchor), saveButton.trailingAnchor.constraint(equalTo: cityLabel.leadingAnchor, constant: 5)].forEach({$0.isActive = true})
     }
 }

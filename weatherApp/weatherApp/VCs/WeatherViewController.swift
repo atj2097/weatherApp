@@ -4,9 +4,6 @@
 //
 //  Created by God on 10/15/19.
 //  Copyright © 2019 God. All rights reserved.
-//
-//TO DO: See why app is crashing when assigning labels
-//TO DO: Add text input delegates
 
 import UIKit
 
@@ -38,8 +35,7 @@ class WeatherViewController: UIViewController {
     private func addViews() {
         self.view.addSubview(weatherView)
     }
-    
-    
+
 }
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -56,8 +52,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         // initially set the format based on your datepicker date / server String
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
-        let myString = formatter.string(from: date as Date) // string purpose I add here
-        // convert your string to date
+        let myString = formatter.string(from: date as Date)
         let yourDate = formatter.date(from: myString)
         //then again set the date format whhich type of output you need
         formatter.dateFormat = "dd-MMM-yyyy"
@@ -94,17 +89,17 @@ extension WeatherViewController: UITextFieldDelegate {
                     self.weatherView.weatherCityLabel.text = "Weather For \(success.2)"
                     self.cityName = success.2
                     DispatchQueue.global().async {
-                    
-                    WeatherAPIManager.shared.getWeather(long: success.long, lat: success.lat, completionHandler: {(result) in
-                        DispatchQueue.main.async {
-                            switch result{
-                            case .success(let weather):
-                                self.weatherArray = weather
-                            case .failure(let error):
-                                print(error)
+                        
+                        WeatherAPIManager.shared.getWeather(long: success.long, lat:success.lat, completionHandler: {(result) in
+                            DispatchQueue.main.async {
+                                switch result{
+                                case .success(let weather):
+                                    self.weatherArray = weather
+                                case .failure(let error):
+                                    print(error)
+                                }
                             }
-                        }
-                    })
+                        })
                     }
                     self.weatherView.weatherCollectionView.reloadData()
                     ImageAPIManager.getImages(city: success.name.lowercased().replacingOccurrences(of: " ", with: "+"), completionHandler: {(result) in
@@ -115,7 +110,7 @@ extension WeatherViewController: UITextFieldDelegate {
                             if url != nil {
                                 if let data = try? Data(contentsOf: url!)
                                 {
-                                UIGraphicsBeginImageContext(self.view.frame.size)
+                                    UIGraphicsBeginImageContext(self.view.frame.size)
                                     UIImage(data: data)?.draw(in: self.view.bounds)
                                     let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
                                     UIGraphicsEndImageContext()
@@ -126,7 +121,7 @@ extension WeatherViewController: UITextFieldDelegate {
                             } else {
                                 self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "27-Clouds-iPhone-Wallpapers-by-Preppy-Wallpapers"))
                             }
-                        
+                            
                             
                         case.failure(let error):
                             print(error)
