@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB0929DC240AA979004FD2B6 /* weatherJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = CB0929DB240AA978004FD2B6 /* weatherJSON.json */; };
 		CB1A05E32356555900108BC9 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05E22356555900108BC9 /* WeatherViewController.swift */; };
 		CB1A05E52356556B00108BC9 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05E42356556B00108BC9 /* FavoritesViewController.swift */; };
 		CB1A05E72356569D00108BC9 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05E62356569D00108BC9 /* WeatherView.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB0929DB240AA978004FD2B6 /* weatherJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weatherJSON.json; sourceTree = "<group>"; };
 		CB1A05E22356555900108BC9 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		CB1A05E42356556B00108BC9 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		CB1A05E62356569D00108BC9 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		CBA91018235652310048CAA7 /* weatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				CB0929DB240AA978004FD2B6 /* weatherJSON.json */,
 				CBA91019235652310048CAA7 /* weatherAppTests.swift */,
 				CBA9101B235652310048CAA7 /* Info.plist */,
 			);
@@ -350,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB0929DC240AA979004FD2B6 /* weatherJSON.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
