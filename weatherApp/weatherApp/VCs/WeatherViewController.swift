@@ -21,15 +21,13 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         weatherView.backgroundColor = .clear
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "27-Clouds-iPhone-Wallpapers-by-Preppy-Wallpapers"))
-        
         addViews()
-        //Setting Up Collection View
+        weatherView.enterZipCode.placeholder = "Last Zip Code: \(UserDefaultsWrapper.manager.getlastZipCode() ?? "")"
         weatherView.weatherCollectionView.dataSource = self
         weatherView.weatherCollectionView.delegate = self
         weatherView.enterZipCode.delegate = self
         let nib = UINib(nibName: "WeatherCell", bundle: nil)
         weatherView.weatherCollectionView.register(nib, forCellWithReuseIdentifier: "weatherCell")
-        dump(weatherArray)
     }
     
     private func addViews() {
@@ -43,7 +41,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         return weatherArray.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell { 
         let cell = weatherView.weatherCollectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as! WeatherCell
         cell.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         let currentWeather = weatherArray[indexPath.row]

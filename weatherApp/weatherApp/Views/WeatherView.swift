@@ -76,6 +76,7 @@ class WeatherView: UIView {
         //Input Zip Code
         enterZipCode.translatesAutoresizingMaskIntoConstraints = false
         [enterZipCode.topAnchor.constraint(equalTo: weatherCollectionView.bottomAnchor, constant: 50), enterZipCode.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor), enterZipCode.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 10), enterZipCode.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0),enterZipCode.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -200)].forEach({$0.isActive = true})
+        
 //        //ZipLabel
         zipCodeText.translatesAutoresizingMaskIntoConstraints = false
         [zipCodeText.topAnchor.constraint(equalTo: enterZipCode.bottomAnchor, constant: 20), zipCodeText.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)].forEach({$0.isActive = true})
