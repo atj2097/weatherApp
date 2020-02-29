@@ -16,6 +16,16 @@ import Foundation
 // MARK: - Weather
 struct Weather: Codable {
     let daily: Daily
+    
+    static func getWeatherDataTest(from data:Data) -> [DailyDatum] {
+        do {
+            let weather = try JSONDecoder().decode(Weather.self, from: data)
+            return weather.daily.data
+        } catch let error {
+            print(error)
+            return []
+        }
+    }
 
 }
 

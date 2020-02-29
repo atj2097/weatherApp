@@ -9,35 +9,29 @@
 import XCTest
 @testable import weatherApp
 
-class weatherAppTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class Weather_App_ProgrammaticTests: XCTestCase {
+    
+    func testLoadWeather () {
+        let data = weatherTest()
+        
+        let weather = Weather.getWeatherDataTest(from: data)
+        XCTAssert(weather.count != 0)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-//       let zipCode = "30331"
-//        var latAndLong2 = (lat: Double, long: Double, name: String)
-//        ZipCodeHelper.getLatLong(fromZipCode: zipCode, completionHandler: {(result) in
-//            switch result {
-//            case .success(let latAndLong):
-//                latAndLong2 = latAndLong
-//            case .failure(let error):
-//                print(error)
-//            }
-//
-//        })
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    private func weatherTest() -> Data {
+        //let bundle = Bundle(for: type(of: self))
+        guard let pathToData = Bundle.main.path(forResource: "weatherJSON", ofType: "json")  else {
+            XCTFail("error deparsing")
+       return Data()
+            
+        }
+        let url = URL(fileURLWithPath: pathToData)
+        do {
+            let data = try Data(contentsOf: url)
+            return data
+        } catch let error {
+            fatalError("couldn't find data \(error)")
         }
     }
-
+    
 }
