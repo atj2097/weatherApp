@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CB0929DC240AA979004FD2B6 /* weatherJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = CB0929DB240AA978004FD2B6 /* weatherJSON.json */; };
+		CB0929DE240AB12C004FD2B6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0929DD240AB12C004FD2B6 /* Secrets.swift */; };
 		CB1A05E32356555900108BC9 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05E22356555900108BC9 /* WeatherViewController.swift */; };
 		CB1A05E52356556B00108BC9 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05E42356556B00108BC9 /* FavoritesViewController.swift */; };
 		CB1A05E72356569D00108BC9 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05E62356569D00108BC9 /* WeatherView.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		CB0929DB240AA978004FD2B6 /* weatherJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weatherJSON.json; sourceTree = "<group>"; };
+		CB0929DD240AB12C004FD2B6 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		CB1A05E22356555900108BC9 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		CB1A05E42356556B00108BC9 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		CB1A05E62356569D00108BC9 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				CB1A05FC235671BC00108BC9 /* AppError.swift */,
 				CB1A0606235776EA00108BC9 /* Persistence Manager.swift */,
 				CB1A06082357774E00108BC9 /* ImageHelper.swift */,
+				CB0929DD240AB12C004FD2B6 /* Secrets.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB0929DE240AB12C004FD2B6 /* Secrets.swift in Sources */,
 				CBA91005235652300048CAA7 /* AppDelegate.swift in Sources */,
 				CB7CFAB52357B68E001244FC /* detailViewController.swift in Sources */,
 				CB1A06052356773300108BC9 /* ImageFetchingService.swift in Sources */,
