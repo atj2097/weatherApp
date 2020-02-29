@@ -17,7 +17,6 @@
 		CB1A05F02356609400108BC9 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05EE2356609400108BC9 /* FavCell.swift */; };
 		CB1A05F12356609400108BC9 /* FavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB1A05EF2356609400108BC9 /* FavCell.xib */; };
 		CB1A05F323566D4900108BC9 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05F223566D4900108BC9 /* UserDefaults.swift */; };
-		CB1A05F523566DDC00108BC9 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05F423566DDC00108BC9 /* Secret.swift */; };
 		CB1A05F7235670E700108BC9 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05F6235670E700108BC9 /* ImageModel.swift */; };
 		CB1A05F9235670FA00108BC9 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05F8235670FA00108BC9 /* WeatherModel.swift */; };
 		CB1A05FB2356719900108BC9 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1A05FA2356719900108BC9 /* NetworkHelper.swift */; };
@@ -63,7 +62,6 @@
 		CB1A05EE2356609400108BC9 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCell.swift; sourceTree = "<group>"; };
 		CB1A05EF2356609400108BC9 /* FavCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavCell.xib; sourceTree = "<group>"; };
 		CB1A05F223566D4900108BC9 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		CB1A05F423566DDC00108BC9 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		CB1A05F6235670E700108BC9 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		CB1A05F8235670FA00108BC9 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		CB1A05FA2356719900108BC9 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 			children = (
 				CB1A05FF2356726000108BC9 /* ImageFetchingService */,
 				CB1A05FE2356725000108BC9 /* WeatherFetchingService */,
-				CB1A05F423566DDC00108BC9 /* Secret.swift */,
 				CB1A05FA2356719900108BC9 /* NetworkHelper.swift */,
 				CB1A05FC235671BC00108BC9 /* AppError.swift */,
 				CB1A0606235776EA00108BC9 /* Persistence Manager.swift */,
@@ -387,7 +384,6 @@
 				CB1A06032356748C00108BC9 /* ZipCodeHelper.swift in Sources */,
 				CB1A05E32356555900108BC9 /* WeatherViewController.swift in Sources */,
 				CB1A05F02356609400108BC9 /* FavCell.swift in Sources */,
-				CB1A05F523566DDC00108BC9 /* Secret.swift in Sources */,
 				CB1A05E72356569D00108BC9 /* WeatherView.swift in Sources */,
 				CB1A05F9235670FA00108BC9 /* WeatherModel.swift in Sources */,
 			);
