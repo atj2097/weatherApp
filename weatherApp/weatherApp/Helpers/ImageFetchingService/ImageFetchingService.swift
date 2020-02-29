@@ -14,7 +14,7 @@ class ImageAPIManager {
     
     static let shared = ImageAPIManager()
     static  func getImages(city: String, completionHandler: @escaping (Result<[Hit], AppError>) -> Void) {
-        let urlStr = "https://pixabay.com/api/?key=13804220-31078e62f469c96f42932130a&q=\(city)&image_type=photo&pretty=true"
+        let urlStr = "https://pixabay.com/api/?key=\(SecretKeys.imageAPIKey)&q=\(city)&image_type=photo&pretty=true"
         guard let url = URL(string: urlStr) else {
             completionHandler(.failure(.badURL))
             return
