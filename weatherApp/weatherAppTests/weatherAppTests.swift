@@ -9,7 +9,7 @@
 import XCTest
 @testable import weatherApp
 
-class Weather_App_ProgrammaticTests: XCTestCase {
+class WeatherAppTest: XCTestCase {
     
     func testLoadWeather () {
         let data = weatherTest()
